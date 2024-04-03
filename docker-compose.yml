@@ -1,0 +1,162 @@
+
+services:
+  ignition-corp:
+    image: inductiveautomation/ignition:${IGN_VERSION:-latest}
+    container_name: ${CORP_IGN_GATEWAY_NAME:-corpGateway}
+    hostname: ${CORP_IGN_GATEWAY_NAME:-corpGateway}
+    user: 0:0
+    volumes:
+      # Gateway backup
+      - ./gw-init/CorpGatewayBackup.gwbk:/restore.gwbk
+      # Ignition data
+      - ignDataCorp:/usr/local/bin/ignition/data
+      #Ignition module seeds
+      - ./module-init/MQTT-Engine-signed.modl:/usr/local/bin/ignition/user-lib/modules/MQTT-Engine.modl
+    environment:
+      ACCEPT_IGNITION_EULA: 'Y'
+      GATEWAY_ADMIN_USERNAME: ${CORP_IGN_USERNAME:-admin}
+      GATEWAY_ADMIN_PASSWORD: ${CORP_IGN_PASSWORD:-password}
+      IGNITION_EDITION: ${CORP_IGN_EDITION:-standard}
+      TZ: ${IGN_TZ:-America/New_York}
+      DISABLE_QUICKSTART: 'true'
+    ports:
+      - ${CORP_IGN_GATEWAY_PORT:-8089}:8088
+    command: >
+      -n ${CORP_IGN_GATEWAY_NAME:-corpGateway}
+      -r /restore.gwbk
+
+    networks:
+      - default
+      
+  ignition-site:
+    image: inductiveautomation/ignition:${IGN_VERSION:-latest}
+    container_name: ${SITE_IGN_GATEWAY_NAME:-siteGateway}
+    hostname: ${SITE_IGN_GATEWAY_NAME:-siteGateway}
+    user: 0:0
+    volumes:
+      # Gateway backup
+      - ./gw-init/SiteGatewayBackup.gwbk:/restore.gwbk
+      # Ignition data
+      - ignDataSite:/usr/local/bin/ignition/data
+      #Ignition module seeds
+      - ./module-init/MQTT-Engine-signed.modl:/usr/local/bin/ignition/user-lib/modules/MQTT-Engine.modl
+    environment:
+      ACCEPT_IGNITION_EULA: 'Y'
+      GATEWAY_ADMIN_USERNAME: ${SITE_IGN_USERNAME:-admin}
+      GATEWAY_ADMIN_PASSWORD: ${SITE_IGN_PASSWORD:-password}
+      IGNITION_EDITION: ${SITE_IGN_EDITION:-standard}
+      TZ: ${IGN_TZ:-America/New_York}
+      DISABLE_QUICKSTART: 'true'
+    ports:
+      - ${SITE_IGN_GATEWAY_PORT:-8090}:8088    
+    command: >
+      -n ${SITE_IGN_GATEWAY_NAME:-siteGateway}
+      -r /restore.gwbk
+    networks:
+      - default
+      
+  ignition-edge:
+    image: inductiveautomation/ignition:${IGN_VERSION:-latest}
+    container_name: ${EDGE_IGN_GATEWAY_NAME:-edgeGateway}
+    hostname: ${EDGE_IGN_GATEWAY_NAME:-edgeGateway}
+    user: 0:0
+    volumes:
+      # Gateway backup
+      - ./gw-init/EdgeGatewayBackup.gwbk:/restore.gwbk
+      # Ignition data
+      - ignDataEdge:/usr/local/bin/ignition/data
+      #Ignition module seeds
+      - ./module-init/MQTT-Transmission-signed.modl:/usr/local/bin/ignition/user-lib/modules/MQTT-Transmission.modl
+    environment:
+      ACCEPT_IGNITION_EULA: 'Y'
+      GATEWAY_ADMIN_USERNAME: ${EDGE_IGN_USERNAME:-admin}
+      GATEWAY_ADMIN_PASSWORD: ${EDGE_IGN_PASSWORD:-password}
+      IGNITION_EDITION: ${EDGE_IGN_EDITION:-edge}
+      TZ: ${IGN_TZ:-America/New_York}
+      DISABLE_QUICKSTART: 'true'
+    ports:
+      - ${EDGE_IGN_GATEWAY_PORT:-8091}:8088  
+    command: >
+      -n ${EDGE_IGN_GATEWAY_NAME:-edgeGateway}
+#      -r /restore.gwbk
+    networks:
+      - default
+  #-----------------------------------------------------------------------------------------------------------------------------  
+  #Postgres Ignition Connection Settings
+      #Name: Postgres
+      #Username: ignition
+      #Password: ignition
+
+    #Gateway running in dockerstack:
+      #Connect URL: jdbc:postgresql://corpPostgres/corpPostgres  
+  corpPostgres:
+    image: postgres
+    hostname: ${CORP_POSTG_DB:-corpPostgres}
+    container_name: ${CORP_POSTG_DB:-corpPostgres}
+    volumes:
+      - postgDataCorp:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${CORP_POSTG_DB:-corpPostgres}
+      POSTGRES_USER: ${CORP_POSTG_USER:-ignition}
+      POSTGRES_PASSWORD: ${CORP_POSTG_PASSWORD:-ignition}
+      TZ: ${IGN_TZ:-America/New_York}
+    networks:
+      - default
+
+
+  #Postgres Ignition Connection Settings
+      #Name: PostgresSite
+      #Username: ignition
+      #Password: ignition
+
+    #Gateway running in dockerstack:
+      #Connect URL: jdbc:postgresql://sitePostgres/sitePostgres  
+  sitePostgres:
+    image: postgres
+    hostname: ${SITE_POSTG_DB:-sitePostgres}
+    container_name: ${SITE_POSTG_DB:-sitePostgres}
+    volumes:
+      - postgDataSite:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${SITE_POSTG_DB:-sitePostgres}
+      POSTGRES_USER: ${SITE_POSTG_USER:-ignition}
+      POSTGRES_PASSWORD: ${SITE_POSTG_PASSWORD:-ignition}
+      TZ: ${IGN_TZ:-America/New_York}
+    networks:
+      - default
+#---------------------------------------------------------------------------------
+#EQMX Initial username and Password
+      #Username: admin 
+      #Password: password
+      
+  emqx:
+    image: emqx/emqx:latest
+    hostname: emqx
+    container_name: emqx
+    ports:
+#      - "1883:1883"        # MQTT
+#      - "8883:8883"        # MQTT/TLS
+      - "8083:8083"        # HTTP Management
+      - "18083:18083"      # Dashboard
+    environment:
+      - EMQX_NAME=emqx
+      - EMQX_HOST=127.0.0.1
+      - EMQX_NODE__DIST_LISTEN_MAX=6379
+    volumes:
+      - emqx:/opt/emqx/data
+      - emqxlog:/opt/emqx/log
+    networks:
+      - default
+
+
+networks:
+  default:
+    driver: bridge
+volumes:
+    ignDataCorp:
+    ignDataSite:
+    ignDataEdge:
+    postgDataCorp:
+    postgDataSite:
+    emqx:
+    emqxlog:
