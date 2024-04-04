@@ -78,7 +78,7 @@ services:
       - ${EDGE_IGN_GATEWAY_PORT:-8091}:8088  
     command: >
       -n ${EDGE_IGN_GATEWAY_NAME:-edgeGateway}
-#      -r /restore.gwbk
+      -r /restore.gwbk
     networks:
       - default
   #-----------------------------------------------------------------------------------------------------------------------------  
@@ -127,7 +127,7 @@ services:
 #---------------------------------------------------------------------------------
 #EQMX Initial username and Password
       #Username: admin 
-      #Password: password
+      #Password: public
       
   emqx:
     image: emqx/emqx:latest
