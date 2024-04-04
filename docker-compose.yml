@@ -23,7 +23,7 @@ services:
       - ${CORP_IGN_GATEWAY_PORT:-8089}:8088
     command: >
       -n ${CORP_IGN_GATEWAY_NAME:-corpGateway}
-    #  -r /restore.gwbk
+      -r /restore.gwbk
 
     networks:
       - default
@@ -51,7 +51,7 @@ services:
       - ${SITE_IGN_GATEWAY_PORT:-8090}:8088    
     command: >
       -n ${SITE_IGN_GATEWAY_NAME:-siteGateway}
-    #  -r /restore.gwbk
+      -r /restore.gwbk
     networks:
       - default
       
@@ -78,7 +78,7 @@ services:
       - ${EDGE_IGN_GATEWAY_PORT:-8091}:8088  
     command: >
       -n ${EDGE_IGN_GATEWAY_NAME:-edgeGateway}
-    #  -r /restore.gwbk
+      -r /restore.gwbk
     networks:
       - default
   #-----------------------------------------------------------------------------------------------------------------------------  
