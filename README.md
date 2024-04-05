@@ -4,25 +4,25 @@ This repository is used as a development stack to demonstrate utilizing MQTT to 
 
 # How It Works
 
-	* Tag data (realtime and historical) utilizes MQTT to get information between gateways
-	* Enterprise Administration Module (EAM), Alarm event data, and Audit logs communicate over the Gateway Network
+* Tag data (realtime and historical) utilizes MQTT to get information between gateways
+* Enterprise Administration Module (EAM), Alarm event data, and Audit logs communicate over the Gateway Network
 
 # Setup
 
-	* Clone Git Repo
-	* Open dir in IDE
-	```run "docker compose up -d"```
-	* gw usernames: admin
-	* gw passwords: password
+* Clone Git Repo
+* Open dir in your IDE of choice
+* Run ` "docker compose up -d" `
+* gw username ` admin `
+* gw passwords ` password `
 
 # Gateway Info
 
-corpGateway: localhost:8089
-	Approve Certificate In Incoming GWN connection from siteGateway
-	Approve Incoming connection More►Approve
+corpGateway ` localhost:8089 `
+* Approve Certificate In Incoming GWN connection from siteGateway
+* Approve Incoming connection More > Approve
 
-siteGateway: localhost:8090
-	Approve Certificate In Incoming GWN connection from 
-	Approve Incoming connection More►Approve
+siteGateway ` localhost:8090 `
+* Approve Certificate In Incoming GWN connection from 
+* Approve Incoming connection More > Approve
 
-edgeGateway: localhost:8091
+edgeGateway ` localhost:8091 `
