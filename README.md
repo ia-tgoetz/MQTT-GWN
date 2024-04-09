@@ -7,8 +7,9 @@ This repository is used as a development stack to demonstrate utilizing MQTT to 
 * Tag data (realtime and historical) utilizes MQTT to get information between gateways
 * Enterprise Administration Module (EAM), Alarm event data, and Audit logs communicate over the Gateway Network
 
-# Setup
+![alt text](https://github.com/ia-tgoetz/MQTT-GWN/blob/main/GWNMQTTArch.JPG?raw=true)
 
+# Setup
 * Clone Git Repo
 * Open dir in your IDE of choice
 * Run ` "docker compose up -d" `
