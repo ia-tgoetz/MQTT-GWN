@@ -31,6 +31,6 @@ siteGateway ` localhost:8090 `
 
 edgeGateway ` localhost:8091 `
 
-# Resources:
+# Resources
 * Better Understand MQTT and MQTT Transmission with this [Video Series](https://inductiveautomation.com/resources/video/what-is-mqtt)
 * Configure Edge [Sync Services](https://docs.inductiveautomation.com/docs/8.1/other-editions/ignition-edge/edge-gateway/configuring-sync-services) 
