@@ -1,20 +1,29 @@
-Description:
-	Tag realtime and history communicating over MQTT. EAM, Alarm Event, Audit, communicating over GWN.
+# Parallel Gateway Network and MQTT Demo
 
-Setup:
+This repository is used as a development stack to demonstrate utilizing MQTT to reduce the load on the Gateway Network
 
-Clone Git Repo
-Open dir in IDE
-run "docker compose up -d"
-gw usernames: admin
-gw passwords: password
+# How It Works
 
-corpGateway: localhost:8089
-	Approve Certificate In Incoming GWN connection from siteGateway
-	Approve Incoming connection More►Approve
+* Tag data (realtime and historical) utilizes MQTT to get information between gateways
+* Enterprise Administration Module (EAM), Alarm event data, and Audit logs communicate over the Gateway Network
 
-siteGateway: localhost:8090
-	Approve Certificate In Incoming GWN connection from 
-	Approve Incoming connection More►Approve
+![alt text](https://github.com/ia-tgoetz/MQTT-GWN/blob/main/GWNMQTTArch.JPG?raw=true)
 
-edgeGateway: localhost:8091
+# Setup
+* Clone Git Repo
+* Open dir in your IDE of choice
+* Run ` "docker compose up -d" `
+* gw username ` admin `
+* gw passwords ` password `
+
+# Gateway Info
+
+corpGateway ` localhost:8089 `
+* Approve Certificate In Incoming GWN connection from siteGateway
+* Approve Incoming connection More > Approve
+
+siteGateway ` localhost:8090 `
+* Approve Certificate In Incoming GWN connection from 
+* Approve Incoming connection More > Approve
+
+edgeGateway ` localhost:8091 `
