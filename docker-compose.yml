@@ -2,8 +2,8 @@
 services:
   ignition-corp:
     image: inductiveautomation/ignition:${IGN_VERSION:-8.1.38}
-    container_name: ${CORP_IGN_GATEWAY_NAME:-corpGateway}
-    hostname: ${CORP_IGN_GATEWAY_NAME:-corpGateway}
+    container_name: ${CORP_IGN_GATEWAY_NAME:-corpGWNGateway}
+    hostname: ${CORP_IGN_GATEWAY_NAME:-corpGWNGateway}
     user: 0:0
     volumes:
       # Gateway backup
@@ -22,7 +22,7 @@ services:
     ports:
       - ${CORP_IGN_GATEWAY_PORT:-8089}:8088
     command: >
-      -n ${CORP_IGN_GATEWAY_NAME:-corpGateway}
+      -n ${CORP_IGN_GATEWAY_NAME:-corpGWNGateway}
       -r /restore.gwbk
 
     networks:
@@ -30,8 +30,8 @@ services:
       
   ignition-site:
     image: inductiveautomation/ignition:${IGN_VERSION:-8.1.38}
-    container_name: ${SITE_IGN_GATEWAY_NAME:-siteGateway}
-    hostname: ${SITE_IGN_GATEWAY_NAME:-siteGateway}
+    container_name: ${SITE_IGN_GATEWAY_NAME:-siteGWNGateway}
+    hostname: ${SITE_IGN_GATEWAY_NAME:-siteGWNGateway}
     user: 0:0
     volumes:
       # Gateway backup
@@ -50,15 +50,15 @@ services:
     ports:
       - ${SITE_IGN_GATEWAY_PORT:-8090}:8088    
     command: >
-      -n ${SITE_IGN_GATEWAY_NAME:-siteGateway}
+      -n ${SITE_IGN_GATEWAY_NAME:-siteGWNGateway}
       -r /restore.gwbk
     networks:
       - default
       
   ignition-edge:
     image: inductiveautomation/ignition:${IGN_VERSION:-8.1.38}
-    container_name: ${EDGE_IGN_GATEWAY_NAME:-edgeGateway}
-    hostname: ${EDGE_IGN_GATEWAY_NAME:-edgeGateway}
+    container_name: ${EDGE_IGN_GATEWAY_NAME:-edgeGWNGateway}
+    hostname: ${EDGE_IGN_GATEWAY_NAME:-edgeGWNGateway}
     user: 0:0
     volumes:
       # Gateway backup
@@ -77,7 +77,7 @@ services:
     ports:
       - ${EDGE_IGN_GATEWAY_PORT:-8091}:8088  
     command: >
-      -n ${EDGE_IGN_GATEWAY_NAME:-edgeGateway}
+      -n ${EDGE_IGN_GATEWAY_NAME:-edgeGWNGateway}
       -r /restore.gwbk
     networks:
       - default
@@ -91,12 +91,12 @@ services:
       #Connect URL: jdbc:postgresql://corpPostgres/corpPostgres  
   corpPostgres:
     image: postgres
-    hostname: ${CORP_POSTG_DB:-corpPostgres}
-    container_name: ${CORP_POSTG_DB:-corpPostgres}
+    hostname: ${CORP_POSTG_DB:-corpGWNPostgres}
+    container_name: ${CORP_POSTG_DB:-corpGWNPostgres}
     volumes:
       - postgDataCorp:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: ${CORP_POSTG_DB:-corpPostgres}
+      POSTGRES_DB: ${CORP_POSTG_DB:-corpGWNPostgres}
       POSTGRES_USER: ${CORP_POSTG_USER:-ignition}
       POSTGRES_PASSWORD: ${CORP_POSTG_PASSWORD:-ignition}
       TZ: ${IGN_TZ:-America/New_York}
@@ -113,12 +113,12 @@ services:
       #Connect URL: jdbc:postgresql://sitePostgres/sitePostgres  
   sitePostgres:
     image: postgres
-    hostname: ${SITE_POSTG_DB:-sitePostgres}
-    container_name: ${SITE_POSTG_DB:-sitePostgres}
+    hostname: ${SITE_POSTG_DB:-siteGWNPostgres}
+    container_name: ${SITE_POSTG_DB:-siteGWNPostgres}
     volumes:
       - postgDataSite:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: ${SITE_POSTG_DB:-sitePostgres}
+      POSTGRES_DB: ${SITE_POSTG_DB:-siteGWNPostgres}
       POSTGRES_USER: ${SITE_POSTG_USER:-ignition}
       POSTGRES_PASSWORD: ${SITE_POSTG_PASSWORD:-ignition}
       TZ: ${IGN_TZ:-America/New_York}
