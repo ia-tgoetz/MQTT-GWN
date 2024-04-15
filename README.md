@@ -4,8 +4,9 @@ This repository is used as a development stack to demonstrate utilizing MQTT to 
 
 # How It Works
 
-* Tag data (realtime and historical) utilizes MQTT to get information between gateways
-* Enterprise Administration Module (EAM), Alarm event data, and Audit logs communicate over the Gateway Network
+* Tag data (realtime and historical) utilizes MQTT to get information between gateways.
+* MQTT Transmission's Store and Forward Buffer is used to ensure Data is not lost between the Edge and Site Gateways.
+* Enterprise Administration Module (EAM), Alarm event data, Alarm Journal, and Audit logs communicate over the Gateway Network
 
 ![alt text](https://github.com/ia-tgoetz/MQTT-GWN/blob/main/GWNMQTTArch.JPG?raw=true)
 
