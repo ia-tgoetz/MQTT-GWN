@@ -8,10 +8,10 @@ This repository is used as a development stack to demonstrate utilizing MQTT to 
 * MQTT Transmission's Store and Forward Buffer is used to ensure Data is not lost between the Edge and Site Gateways.
 * Enterprise Administration Module (EAM), Alarm event data, Alarm Journal, and Audit logs communicate over the Gateway Network
 
-![alt text](https://github.com/ia-tgoetz/MQTT-GWN/blob/main/GWNMQTTArch.JPG?raw=true)
 <p align="center">
   <img src="https://github.com/ia-tgoetz/MQTT-GWN/blob/main/GWNMQTTArch.JPG?raw=true" alt="alt text">
 </p>
+
 # Setup
 * Clone Git Repo
 * Open dir in your IDE of choice
