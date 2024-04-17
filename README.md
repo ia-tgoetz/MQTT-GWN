@@ -22,10 +22,12 @@ This repository is used as a development stack to demonstrate utilizing MQTT to 
 # Gateway Info
 
 corpGateway ` localhost:8089 `
+* Delete All Certificates and Incoming connections
 * Approve Certificate In Incoming GWN connection from siteGateway
 * Approve Incoming connection More > Approve
 
 siteGateway ` localhost:8090 `
+* Delete All Certificates and Incoming connections
 * Approve Certificate In Incoming GWN connection from 
 * Approve Incoming connection More > Approve
 
