@@ -1,7 +1,7 @@
 
 services:
   ignition-corp:
-    image: inductiveautomation/ignition:${IGN_VERSION:-8.1.38}
+    image: inductiveautomation/ignition:${IGN_VERSION:-8.1.43}
     container_name: ${CORP_IGN_GATEWAY_NAME:-corpGWNGateway}
     hostname: ${CORP_IGN_GATEWAY_NAME:-corpGWNGateway}
     user: 0:0
@@ -29,7 +29,7 @@ services:
       - default
       
   ignition-site:
-    image: inductiveautomation/ignition:${IGN_VERSION:-8.1.38}
+    image: inductiveautomation/ignition:${IGN_VERSION:-8.1.43}
     container_name: ${SITE_IGN_GATEWAY_NAME:-siteGWNGateway}
     hostname: ${SITE_IGN_GATEWAY_NAME:-siteGWNGateway}
     user: 0:0
@@ -56,7 +56,7 @@ services:
       - default
       
   ignition-edge:
-    image: inductiveautomation/ignition:${IGN_VERSION:-8.1.38}
+    image: inductiveautomation/ignition:${IGN_VERSION:-8.1.43}
     container_name: ${EDGE_IGN_GATEWAY_NAME:-edgeGWNGateway}
     hostname: ${EDGE_IGN_GATEWAY_NAME:-edgeGWNGateway}
     user: 0:0
