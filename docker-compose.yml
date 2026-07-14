@@ -1,86 +1,180 @@
 
 services:
-  ignition-corp:
-    image: inductiveautomation/ignition:${IGN_VERSION:-8.1.43}
-    container_name: ${CORP_IGN_GATEWAY_NAME:-corpGWNGateway}
-    hostname: ${CORP_IGN_GATEWAY_NAME:-corpGWNGateway}
+  #http://corpgateway.localtest.me/web/home?0
+  #primaryHostID: corporate 
+  corpGateway:
+    image: inductiveautomation/ignition:${IGN_VERSION:-8.1.49}
+    container_name: ${CORP_IGN_GATEWAY_NAME}
+    hostname: ${CORP_IGN_GATEWAY_NAME}
     user: 0:0
     volumes:
       # Gateway backup
-      - ./gw-init/CorpGatewayBackup.gwbk:/restore.gwbk
+      - ./gw-init/corpGateway.gwbk:/restore.gwbk
       # Ignition data
       - ignDataCorp:/usr/local/bin/ignition/data
       #Ignition module seeds
       - ./module-init/MQTT-Engine-signed.modl:/usr/local/bin/ignition/user-lib/modules/MQTT-Engine.modl
+    labels:
+      - traefik.enable=true
+      - traefik.hostname=${CORP_IGN_GATEWAY_NAME}
     environment:
       ACCEPT_IGNITION_EULA: 'Y'
-      GATEWAY_ADMIN_USERNAME: ${CORP_IGN_USERNAME:-admin}
-      GATEWAY_ADMIN_PASSWORD: ${CORP_IGN_PASSWORD:-password}
-      IGNITION_EDITION: ${CORP_IGN_EDITION:-standard}
+      GATEWAY_ADMIN_USERNAME: ${CORP_IGN_USERNAME}
+      GATEWAY_ADMIN_PASSWORD: ${CORP_IGN_PASSWORD}
+      IGNITION_EDITION: ${CORP_IGN_EDITION}
       TZ: ${IGN_TZ:-America/New_York}
       DISABLE_QUICKSTART: 'true'
-    ports:
-      - ${CORP_IGN_GATEWAY_PORT:-8089}:8088
+    # ports:
+    #   - ${CORP_IGN_GATEWAY_PORT}:8088
     command: >
-      -n ${CORP_IGN_GATEWAY_NAME:-corpGWNGateway}
-      -r /restore.gwbk
-
+      -n ${CORP_IGN_GATEWAY_NAME}
+      -h 80
+      -s 443
+      -a ${CORP_IGN_GATEWAY_NAME}
+      -r /restore.gwbk      
     networks:
       - default
+    profiles: ["corpGateway"]
       
-  ignition-site:
-    image: inductiveautomation/ignition:${IGN_VERSION:-8.1.43}
-    container_name: ${SITE_IGN_GATEWAY_NAME:-siteGWNGateway}
-    hostname: ${SITE_IGN_GATEWAY_NAME:-siteGWNGateway}
+  siteGateway:
+    image: inductiveautomation/ignition:${IGN_VERSION}
+    container_name: ${SITE_IGN_GATEWAY_NAME}
+    hostname: ${SITE_IGN_GATEWAY_NAME}
     user: 0:0
     volumes:
       # Gateway backup
-      - ./gw-init/SiteGatewayBackup.gwbk:/restore.gwbk
+      - ./gw-init/siteGateway.gwbk:/restore.gwbk
       # Ignition data
       - ignDataSite:/usr/local/bin/ignition/data
       #Ignition module seeds
       - ./module-init/MQTT-Engine-signed.modl:/usr/local/bin/ignition/user-lib/modules/MQTT-Engine.modl
+      - ./module-init/MQTT-Distributor-signed.modl:/usr/local/bin/ignition/user-lib/modules/MQTT-Distributor-signed.modl
+      - ./module-init/MQTT-Transmission-signed.modl:/usr/local/bin/ignition/user-lib/modules/MQTT-Transmission-signed.modl
+    labels:
+      - traefik.enable=true
+      - traefik.hostname=${SITE_IGN_GATEWAY_NAME}
     environment:
       ACCEPT_IGNITION_EULA: 'Y'
-      GATEWAY_ADMIN_USERNAME: ${SITE_IGN_USERNAME:-admin}
-      GATEWAY_ADMIN_PASSWORD: ${SITE_IGN_PASSWORD:-password}
-      IGNITION_EDITION: ${SITE_IGN_EDITION:-standard}
+      GATEWAY_ADMIN_USERNAME: ${SITE_IGN_USERNAME}
+      GATEWAY_ADMIN_PASSWORD: ${SITE_IGN_PASSWORD}
+      IGNITION_EDITION: ${SITE_IGN_EDITION}
       TZ: ${IGN_TZ:-America/New_York}
       DISABLE_QUICKSTART: 'true'
-    ports:
-      - ${SITE_IGN_GATEWAY_PORT:-8090}:8088    
+    # ports:
+      # - "1883:1883"  
+    #   - ${SITE_IGN_GATEWAY_PORT}:8088    
     command: >
-      -n ${SITE_IGN_GATEWAY_NAME:-siteGWNGateway}
+      -n ${SITE_IGN_GATEWAY_NAME}
+      -h 80
+      -s 443
+      -a ${SITE_IGN_GATEWAY_NAME}
       -r /restore.gwbk
     networks:
       - default
-      
-  ignition-edge:
-    image: inductiveautomation/ignition:${IGN_VERSION:-8.1.43}
-    container_name: ${EDGE_IGN_GATEWAY_NAME:-edgeGWNGateway}
-    hostname: ${EDGE_IGN_GATEWAY_NAME:-edgeGWNGateway}
+    profiles: ["siteGateway"]
+       
+  siteEdgeGateway1:
+    image: inductiveautomation/ignition:${IGN_VERSION}
+    container_name: ${EDGE_IGN_GATEWAY_NAME}
+    hostname: ${EDGE_IGN_GATEWAY_NAME}
     user: 0:0
     volumes:
       # Gateway backup
-      - ./gw-init/EdgeGatewayBackup.gwbk:/restore.gwbk
+      - ./gw-init/siteEdgeGateway.gwbk:/restore.gwbk
       # Ignition data
       - ignDataEdge:/usr/local/bin/ignition/data
       #Ignition module seeds
       - ./module-init/MQTT-Transmission-signed.modl:/usr/local/bin/ignition/user-lib/modules/MQTT-Transmission.modl
+    labels:
+      - traefik.enable=true
+      - traefik.hostname=${EDGE_IGN_GATEWAY_NAME}
     environment:
       ACCEPT_IGNITION_EULA: 'Y'
-      GATEWAY_ADMIN_USERNAME: ${EDGE_IGN_USERNAME:-admin}
-      GATEWAY_ADMIN_PASSWORD: ${EDGE_IGN_PASSWORD:-password}
+      GATEWAY_ADMIN_USERNAME: ${EDGE_IGN_USERNAME}
+      GATEWAY_ADMIN_PASSWORD: ${EDGE_IGN_PASSWORD}
       IGNITION_EDITION: ${EDGE_IGN_EDITION:-edge}
       TZ: ${IGN_TZ:-America/New_York}
       DISABLE_QUICKSTART: 'true'
-    ports:
-      - ${EDGE_IGN_GATEWAY_PORT:-8091}:8088  
+    # ports:
+    #   - ${EDGE_IGN_GATEWAY_PORT}:8088  
     command: >
-      -n ${EDGE_IGN_GATEWAY_NAME:-edgeGWNGateway}
+      -n ${EDGE_IGN_GATEWAY_NAME}
+      -h 80
+      -s 443
+      -a ${EDGE_IGN_GATEWAY_NAME}
       -r /restore.gwbk
     networks:
       - default
+    profiles: ["siteEdgeGateway1"]
+
+  edgeGateway1:
+    image: inductiveautomation/ignition:${IGN_VERSION}
+    container_name: ${EDGE_IGN1_GATEWAY_NAME}
+    hostname: ${EDGE_IGN1_GATEWAY_NAME}
+    user: 0:0
+    volumes:
+      # Gateway backup
+      - ./gw-init/edgeGateway1.gwbk:/restore.gwbk
+      # Ignition data
+      - ignDataEdge1:/usr/local/bin/ignition/data
+      #Ignition module seeds
+      - ./module-init/MQTT-Transmission-signed.modl:/usr/local/bin/ignition/user-lib/modules/MQTT-Transmission.modl
+    labels:
+      - traefik.enable=true
+      - traefik.hostname=${EDGE_IGN1_GATEWAY_NAME}
+    environment:
+      ACCEPT_IGNITION_EULA: 'Y'
+      GATEWAY_ADMIN_USERNAME: ${EDGE_IGN1_USERNAME}
+      GATEWAY_ADMIN_PASSWORD: ${EDGE_IGN1_PASSWORD}
+      IGNITION_EDITION: ${EDGE_IGN1_EDITION}
+      TZ: ${IGN_TZ:-America/New_York}
+      DISABLE_QUICKSTART: 'true'
+    # ports:
+    #   - ${EDGE_IGN1_GATEWAY_PORT}:8088  
+    command: >
+      -n ${EDGE_IGN1_GATEWAY_NAME}
+      -h 80
+      -s 443
+      -a ${EDGE_IGN1_GATEWAY_NAME}
+      -r /restore.gwbk
+    networks:
+      - default
+    profiles: ["edgeGateway1"]
+
+  edgeGateway2:
+    image: inductiveautomation/ignition:${IGN_VERSION}
+    container_name: ${EDGE_IGN2_GATEWAY_NAME}
+    hostname: ${EDGE_IGN2_GATEWAY_NAME}
+    user: 0:0
+    volumes:
+      # Gateway backup
+      - ./gw-init/edgeGateway2.gwbk:/restore.gwbk
+      # Ignition data
+      - ignDataEdge2:/usr/local/bin/ignition/data
+      #Ignition module seeds
+      - ./module-init/MQTT-Transmission-signed.modl:/usr/local/bin/ignition/user-lib/modules/MQTT-Transmission.modl
+    labels:
+      - traefik.enable=true
+      - traefik.hostname=${EDGE_IGN2_GATEWAY_NAME}
+    environment:
+      ACCEPT_IGNITION_EULA: 'Y'
+      GATEWAY_ADMIN_USERNAME: ${EDGE_IGN2_USERNAME}
+      GATEWAY_ADMIN_PASSWORD: ${EDGE_IGN2_PASSWORD}
+      IGNITION_EDITION: ${EDGE_IGN_EDITION}
+      TZ: ${IGN_TZ:-America/New_York}
+      DISABLE_QUICKSTART: 'true'
+    # ports:
+    #   - ${EDGE_IGN2_GATEWAY_PORT}:8088  
+    command: >
+      -n ${EDGE_IGN2_GATEWAY_NAME}
+      -h 80
+      -s 443
+      -a ${EDGE_IGN2_GATEWAY_NAME}
+      -r /restore.gwbk
+    networks:
+      - default
+    profiles: ["edgeGateway2"]
+
   #-----------------------------------------------------------------------------------------------------------------------------  
   #Postgres Ignition Connection Settings
       #Name: Postgres
@@ -102,6 +196,7 @@ services:
       TZ: ${IGN_TZ:-America/New_York}
     networks:
       - default
+    profiles: ["corpPostgres"]
 
 
   #Postgres Ignition Connection Settings
@@ -124,11 +219,30 @@ services:
       TZ: ${IGN_TZ:-America/New_York}
     networks:
       - default
+    profiles: ["sitePostgres"]
+#---------------------------------------------------------------------------------
+  chariot:
+    build:
+      context: . # The build context is the current directory
+      dockerfile: dockerfile # Specifies the name of the dockerfile
+    container_name: chariot-server
+    restart: unless-stopped
+    ports:
+      - "1883:1883" # MQTT Port
+      - "8080:8080" # Web UI Port
+    volumes:
+      # This maps a local folder to the container's data directory
+      # for persistent configuration and data.
+      - ./chariot-data:/usr/local/chariot/data
+    networks:
+      - default
+    profiles: ["chariot"]
 #---------------------------------------------------------------------------------
 #EQMX Initial username and Password
       #Username: admin 
-      #Password: public
-      
+      #Password: public ► Ignition1!
+      #Dashboard: http://localhost:18083/#/dashboard/overview
+
   emqx:
     image: emqx/emqx:latest
     hostname: emqx
@@ -147,15 +261,21 @@ services:
       - emqxlog:/opt/emqx/log
     networks:
       - default
+    profiles: ["emqx"]
 
 
 networks:
   default:
+    external: true
+    name: proxy
     driver: bridge
+
 volumes:
     ignDataCorp:
     ignDataSite:
     ignDataEdge:
+    ignDataEdge1:
+    ignDataEdge2:
     postgDataCorp:
     postgDataSite:
     emqx:
