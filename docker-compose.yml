@@ -8,8 +8,6 @@ services:
     hostname: ${CORP_IGN_GATEWAY_NAME}
     user: 0:0
     volumes:
-      # Gateway backup - restored only on a fresh gateway (first launch)
-      # - ./gw-init/corpGateway.gwbk:/restore.gwbk
       # Ignition data
       - ignDataCorp:/usr/local/bin/ignition/data
       # 8.3 file-based config + projects, exploded onto the host by the restore
@@ -36,8 +34,7 @@ services:
       -n ${CORP_IGN_GATEWAY_NAME}
       -h 80
       -s 443
-      -a ${CORP_IGN_GATEWAY_NAME}
-    # -r /restore.gwbk      
+      -a ${CORP_IGN_GATEWAY_NAME} 
     networks:
       - default
     profiles: ["corpGateway"]
@@ -48,8 +45,6 @@ services:
     hostname: ${SITE_IGN_GATEWAY_NAME}
     user: 0:0
     volumes:
-      # Gateway backup - restored only on a fresh gateway (first launch)
-    # - ./gw-init/siteGateway.gwbk:/restore.gwbk  
       # Ignition data
       - ignDataSite:/usr/local/bin/ignition/data
       # 8.3 file-based config + projects, exploded onto the host by the restore
@@ -80,7 +75,6 @@ services:
       -h 80
       -s 443
       -a ${SITE_IGN_GATEWAY_NAME}
-    # -r /restore.gwbk
     networks:
       - default
     profiles: ["siteGateway"]
@@ -91,8 +85,6 @@ services:
     hostname: ${EDGE_IGN_GATEWAY_NAME}
     user: 0:0
     volumes:
-      # Gateway backup - restored only on a fresh gateway (first launch)
-      # - ./gw-init/siteEdgeGateway.gwbk:/restore.gwbk
       # Ignition data
       - ignDataEdge:/usr/local/bin/ignition/data
       # 8.3 file-based config + projects, exploded onto the host by the restore
@@ -120,7 +112,6 @@ services:
       -h 80
       -s 443
       -a ${EDGE_IGN_GATEWAY_NAME}
-    # -r /restore.gwbk
     networks:
       - default
     profiles: ["siteEdgeGateway1"]
@@ -131,8 +122,6 @@ services:
     hostname: ${EDGE_IGN1_GATEWAY_NAME}
     user: 0:0
     volumes:
-      # Gateway backup - restored only on a fresh gateway (first launch)
-      # - ./gw-init/edgeGateway1.gwbk:/restore.gwbk
       # Ignition data
       - ignDataEdge1:/usr/local/bin/ignition/data
       # 8.3 file-based config + projects, exploded onto the host by the restore
@@ -160,7 +149,6 @@ services:
       -h 80
       -s 443
       -a ${EDGE_IGN1_GATEWAY_NAME}
-    # -r /restore.gwbk
     networks:
       - default
     profiles: ["edgeGateway1"]
@@ -171,8 +159,6 @@ services:
     hostname: ${EDGE_IGN2_GATEWAY_NAME}
     user: 0:0
     volumes:
-      # Gateway backup - restored only on a fresh gateway (first launch)
-    # - ./gw-init/edgeGateway2.gwbk:/restore.gwbk
       # Ignition data
       - ignDataEdge2:/usr/local/bin/ignition/data
       # 8.3 file-based config + projects, exploded onto the host by the restore
@@ -200,7 +186,6 @@ services:
       -h 80
       -s 443
       -a ${EDGE_IGN2_GATEWAY_NAME}
-    # -r /restore.gwbk
     networks:
       - default
     profiles: ["edgeGateway2"]
