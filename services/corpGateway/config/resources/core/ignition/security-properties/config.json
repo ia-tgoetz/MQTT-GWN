@@ -24,9 +24,11 @@
                 "name": "Administrator"
               }
             ],
+            "description": "Represents the roles that a user has.",
             "name": "Roles"
           }
         ],
+        "description": "Represents a user who has been authenticated by the system.",
         "name": "Authenticated"
       }
     ],
@@ -34,7 +36,6 @@
   },
   "designerRoleName": "Administrator",
   "forceIdpAuth": true,
-  "gatewayAuditProfile": "",
   "readPermissions": {
     "securityLevels": [
       {
@@ -46,16 +47,18 @@
                 "name": "Administrator"
               }
             ],
+            "description": "Represents the roles that a user has.",
             "name": "Roles"
           }
         ],
+        "description": "Represents a user who has been authenticated by the system.",
         "name": "Authenticated"
       }
     ],
     "type": "AnyOf"
   },
-  "systemAuthProfile": "temp_1",
-  "systemIdentityProvider": "temp_1",
+  "systemAuthProfile": "default",
+  "systemIdentityProvider": "default",
   "userInactivityTimeout": -1,
   "writePermissions": {
     "securityLevels": [
@@ -68,9 +71,11 @@
                 "name": "Administrator"
               }
             ],
+            "description": "Represents the roles that a user has.",
             "name": "Roles"
           }
         ],
+        "description": "Represents a user who has been authenticated by the system.",
         "name": "Authenticated"
       }
     ],
