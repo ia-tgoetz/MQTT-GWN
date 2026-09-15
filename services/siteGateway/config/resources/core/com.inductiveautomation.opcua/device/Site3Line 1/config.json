@@ -1,0 +1,10 @@
+{
+  "profile": {
+    "type": "ProgrammableSimulatorDevice"
+  },
+  "settings": {
+    "legacyMode": true,
+    "repeat": true,
+    "timeIntervalRate": 1000
+  }
+}

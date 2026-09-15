@@ -1,0 +1,60 @@
+[
+  {
+    "name": "Line 1",
+    "parameters": {
+      "deviceName": "Site2Line 1",
+      "lineNum": 1
+    },
+    "tagType": "UdtInstance",
+    "typeId": "line",
+    "tags": [
+      {
+        "dataType": "Int4",
+        "name": "hoa",
+        "tagType": "AtomicTag",
+        "value": 0
+      },
+      {
+        "dataType": "Boolean",
+        "name": "running",
+        "tagType": "AtomicTag",
+        "value": true
+      },
+      {
+        "dataType": "Float4",
+        "name": "speed",
+        "tagType": "AtomicTag",
+        "value": 34.62159
+      }
+    ]
+  },
+  {
+    "name": "Line 2",
+    "parameters": {
+      "deviceName": "Site2Line 1",
+      "lineNum": 2
+    },
+    "tagType": "UdtInstance",
+    "typeId": "line",
+    "tags": [
+      {
+        "dataType": "Int4",
+        "name": "hoa",
+        "tagType": "AtomicTag",
+        "value": 0
+      },
+      {
+        "dataType": "Boolean",
+        "name": "running",
+        "tagType": "AtomicTag",
+        "value": true
+      },
+      {
+        "dataType": "Float4",
+        "name": "speed",
+        "tagType": "AtomicTag",
+        "value": 1.35474
+      }
+    ]
+  }
+]

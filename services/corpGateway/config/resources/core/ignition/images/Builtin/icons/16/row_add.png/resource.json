@@ -1,0 +1,20 @@
+{
+  "scope": "A",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "row_add.png"
+  ],
+  "attributes": {
+    "width": 16,
+    "format": "PNG",
+    "lastModification": {
+      "actor": "8.3-migration",
+      "timestamp": "2026-09-15T12:28:12Z"
+    },
+    "size": 228,
+    "lastModificationSignature": "38f66ef72f3cebbface7516faedcc4fc3550ab885991046ee7a57e069a30ba0d",
+    "height": 16
+  }
+}

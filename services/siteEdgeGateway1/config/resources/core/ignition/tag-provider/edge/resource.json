@@ -1,0 +1,19 @@
+{
+  "scope": "A",
+  "description": "Tag provider created for Edge",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "config.json"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "8.3-migration",
+      "timestamp": "2026-09-15T12:28:40Z"
+    },
+    "uuid": "b6af8fd8-64da-4f8a-bc5c-88bd4fc61e60",
+    "lastModificationSignature": "525c30394268e864da0706e3ee2e9830b8ae35e9a599cc0874b23902a9450531",
+    "enabled": true
+  }
+}

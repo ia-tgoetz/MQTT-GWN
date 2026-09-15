@@ -1,0 +1,6 @@
+{
+  "autoReconnectRpcClient": false,
+  "primaryHostId": "siteBroker",
+  "randomizeServerConnections": false,
+  "rpcClientEnabled": false
+}

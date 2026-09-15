@@ -1,0 +1,22 @@
+{
+  "clientIdentifierType": "UUID",
+  "dataFormatTypeWrapper": "Sparkplug_B_v1_0_Protobuf",
+  "hostnameVerification": true,
+  "keepAlive": 30,
+  "password": {
+    "data": {
+      "ciphertext": "R923il3XqPrVSg",
+      "encrypted_key": "NgcIb8HvD6dXyHxnSbM4FGx-m1aXIzUpBVF8A1SE9iUJWYracJeaeg",
+      "iv": "qYN06bdUjlWw9U22",
+      "protected": "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIiwiaWF0IjoxNzg5NDg3NTYyLCJ6aXAiOiJERUYifQ",
+      "tag": "cyraC2HZvie3dcUTVDTULQ"
+    },
+    "type": "Embedded"
+  },
+  "reconnectDelay": 1000,
+  "rpcHostnameVerification": true,
+  "serverSet": "corpBroker",
+  "subscribeToLegacyStateTopic": true,
+  "url": "tcp://chariot:1883",
+  "username": "admin"
+}

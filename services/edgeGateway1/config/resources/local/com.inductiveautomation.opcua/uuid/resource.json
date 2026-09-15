@@ -1,0 +1,11 @@
+{
+  "scope": "A",
+  "description": "Migrated 8.1.x UUID",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "uuid.txt"
+  ],
+  "attributes": {}
+}
