@@ -1,0 +1,20 @@
+{
+  "scope": "A",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "lock.png"
+  ],
+  "attributes": {
+    "width": 24,
+    "format": "PNG",
+    "lastModification": {
+      "actor": "8.3-migration",
+      "timestamp": "2026-09-15T12:28:08Z"
+    },
+    "size": 462,
+    "lastModificationSignature": "18f3ab73848ad678b91f8f39b86f72fe2e170417d043404f2b1b7c1ec7637959",
+    "height": 24
+  }
+}

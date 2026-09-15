@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Offline DateTime",
+    "tagType": "AtomicTag",
+    "usr": {
+      "value": 1.759747478407E12
+    }
+  },
+  {
+    "name": "Online",
+    "tagType": "AtomicTag",
+    "usr": {
+      "value": false
+    }
+  }
+]

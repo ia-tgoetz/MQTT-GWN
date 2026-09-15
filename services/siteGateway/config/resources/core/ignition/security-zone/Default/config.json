@@ -1,0 +1,7 @@
+{
+  "directConnection": false,
+  "isSecure": false,
+  "scopeClient": true,
+  "scopeDesigner": true,
+  "scopeGateway": true
+}

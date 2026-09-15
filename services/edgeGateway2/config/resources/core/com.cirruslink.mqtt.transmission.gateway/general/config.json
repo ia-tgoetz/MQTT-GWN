@@ -1,0 +1,4 @@
+{
+  "enableTransmission": false,
+  "redundancyTransitionActiveDelay": 3000
+}

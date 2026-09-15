@@ -1,0 +1,11 @@
+{
+  "scope": "A",
+  "description": "Migrated 8.1.x Client Keystore",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "keystore.pfx"
+  ],
+  "attributes": {}
+}

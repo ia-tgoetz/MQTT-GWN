@@ -1,0 +1,50 @@
+[
+  {
+    "name": "line",
+    "parameters": {
+      "deviceName": {
+        "dataType": "String",
+        "value": "Site3Line 2"
+      },
+      "lineNum": {
+        "dataType": "Integer",
+        "value": 1
+      }
+    },
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "name": "hoa",
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[{deviceName}]_Meta:Writeable/WriteableInteger{lineNum}"
+        },
+        "opcServer": "Ignition OPC UA Server",
+        "tagType": "AtomicTag",
+        "valueSource": "opc"
+      },
+      {
+        "dataType": "Boolean",
+        "name": "running",
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[{deviceName}]_Meta:Random/RandomBoolean{lineNum}"
+        },
+        "opcServer": "Ignition OPC UA Server",
+        "tagType": "AtomicTag",
+        "valueSource": "opc"
+      },
+      {
+        "dataType": "Float4",
+        "name": "speed",
+        "opcItemPath": {
+          "bindType": "parameter",
+          "binding": "ns\u003d1;s\u003d[{deviceName}]_Meta:Ramp/Ramp{lineNum}"
+        },
+        "opcServer": "Ignition OPC UA Server",
+        "tagType": "AtomicTag",
+        "valueSource": "opc"
+      }
+    ]
+  }
+]

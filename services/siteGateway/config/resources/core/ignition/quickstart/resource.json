@@ -1,0 +1,11 @@
+{
+  "scope": "A",
+  "description": "Quick Start Configuration",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "config.json"
+  ],
+  "attributes": {}
+}
