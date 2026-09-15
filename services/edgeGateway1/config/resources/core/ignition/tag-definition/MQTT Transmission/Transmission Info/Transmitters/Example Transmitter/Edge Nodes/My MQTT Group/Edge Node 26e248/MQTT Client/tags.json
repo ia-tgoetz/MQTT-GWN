@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Command Latency",
+    "tagType": "AtomicTag",
+    "usr": {
+      "value": -1
+    }
+  },
+  {
+    "name": "Enable Latency Check",
+    "tagType": "AtomicTag",
+    "usr": {
+      "value": false
+    }
+  },
+  {
+    "name": "Offline DateTime",
+    "tagType": "AtomicTag",
+    "usr": {
+      "value": 1.759748244718E12
+    }
+  },
+  {
+    "name": "Online",
+    "tagType": "AtomicTag",
+    "usr": {
+      "value": false
+    }
+  }
+]

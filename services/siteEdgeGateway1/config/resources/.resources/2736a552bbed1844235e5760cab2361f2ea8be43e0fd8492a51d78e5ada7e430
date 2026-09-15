@@ -1,0 +1,22 @@
+{
+  "clientIdentifierType": "UUID",
+  "dataFormatTypeWrapper": "Sparkplug_B_v1_0_Protobuf",
+  "hostnameVerification": true,
+  "keepAlive": 30,
+  "password": {
+    "data": {
+      "ciphertext": "KPoZzeNHVlKDFA",
+      "encrypted_key": "BvHNjY4coh1-ROgipGwZT3s_DBa50Sth_DnevJAP-Xm3NeqwNX8Hlg",
+      "iv": "TmCw4h4pvtN1Xjh5",
+      "protected": "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIiwiaWF0IjoxNzg5NDc1MzIxLCJ6aXAiOiJERUYifQ",
+      "tag": "FzmZvrQ8DyfKeGwWrHaRXw"
+    },
+    "type": "Embedded"
+  },
+  "reconnectDelay": 1000,
+  "rpcHostnameVerification": true,
+  "serverSet": "siteBroker",
+  "subscribeToLegacyStateTopic": true,
+  "url": "tcp://sitegateway:1883",
+  "username": "admin"
+}

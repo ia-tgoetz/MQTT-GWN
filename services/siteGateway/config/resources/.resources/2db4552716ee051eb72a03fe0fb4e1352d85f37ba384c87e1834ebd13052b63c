@@ -1,0 +1,36 @@
+{
+  "caCertFile": null,
+  "cleanSession": true,
+  "clientCertFile": null,
+  "clientId": null,
+  "clientPrivateKeyFile": null,
+  "enableLegacyStateMessages": false,
+  "enablePrimaryHostSubscriptions": false,
+  "filteredNamespaces": null,
+  "hostnameVerification": true,
+  "includeSparkplugDataTypes": true,
+  "keepAlive": 30,
+  "legacyStateCaCertFile": null,
+  "legacyStateClientCertFile": null,
+  "legacyStateClientId": null,
+  "legacyStateClientKeyPassword": null,
+  "legacyStateClientPrivateKeyFile": null,
+  "legacyStateHostnameVerification": true,
+  "legacyStatePassword": null,
+  "legacyStateTlsAlpnExtensions": null,
+  "legacyStateUsername": null,
+  "password": {
+    "data": {
+      "ciphertext": "M7eSakdGe5Q9Lw",
+      "encrypted_key": "dNmfuNxAjFuMrfbjetgilv2zZGT50_5wJPIK0EAVXSNUzuItfjqhiQ",
+      "iv": "ZSBwML1pV5XB2JYY",
+      "protected": "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIiwiaWF0IjoxNzg5NDc1MzUwLCJ6aXAiOiJERUYifQ",
+      "tag": "mJGl_5dazIWhbmulL3QaFw"
+    },
+    "type": "Embedded"
+  },
+  "serverSet": "siteBroker",
+  "tlsAlpnExtensions": null,
+  "url": "tcp://localhost:1883",
+  "username": "admin"
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Line1",
+    "parameters": {
+      "deviceName": {
+        "dataType": "String",
+        "value": "Site3Line 1"
+      }
+    },
+    "tagType": "UdtInstance",
+    "typeId": "line"
+  },
+  {
+    "name": "Line2",
+    "parameters": {
+      "deviceName": {
+        "dataType": "String",
+        "value": "Site3Line 1"
+      },
+      "lineNum": {
+        "dataType": "Integer",
+        "value": 2
+      }
+    },
+    "tagType": "UdtInstance",
+    "typeId": "line"
+  }
+]

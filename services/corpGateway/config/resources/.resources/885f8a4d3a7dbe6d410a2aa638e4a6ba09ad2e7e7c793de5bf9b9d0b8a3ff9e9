@@ -1,0 +1,36 @@
+{
+  "connectURL": "jdbc:postgresql://corpPostgres/corpPostgres",
+  "connectionProps": null,
+  "connectionResetParams": "",
+  "defaultTransactionLevel": "DEFAULT",
+  "driver": "PostgreSQL",
+  "evictionRate": -1,
+  "evictionTests": 3,
+  "evictionTime": 1800000,
+  "failoverMode": "STANDARD",
+  "failoverProfile": null,
+  "includeSchemaInTableName": false,
+  "password": {
+    "data": {
+      "ciphertext": "T2bh1X3Jh4DMBg",
+      "encrypted_key": "KBQDnwWMU7_oOwZkW1y1poD6bfSTB4R7w8GNhisYen5f04rLrdWDmw",
+      "iv": "ovFD3fm1_u0CNm93",
+      "protected": "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIiwiaWF0IjoxNzg5NDc1Mjg5LCJ6aXAiOiJERUYifQ",
+      "tag": "bKfbBVPnbOnoMDqpV3M-4A"
+    },
+    "type": "Embedded"
+  },
+  "poolInitSize": 0,
+  "poolMaxActive": 8,
+  "poolMaxIdle": 8,
+  "poolMaxWait": 5000,
+  "poolMinIdle": 0,
+  "slowQueryLogThreshold": 60000,
+  "testOnBorrow": true,
+  "testOnReturn": false,
+  "testWhileIdle": false,
+  "translator": "POSTGRES",
+  "username": "ignition",
+  "validationQuery": "SELECT 1",
+  "validationSleepTime": 10000
+}

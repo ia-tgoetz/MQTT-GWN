@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Line1",
+    "tagType": "UdtInstance",
+    "typeId": "line"
+  },
+  {
+    "name": "Line2",
+    "parameters": {
+      "lineNum": {
+        "dataType": "Integer",
+        "value": 2
+      }
+    },
+    "tagType": "UdtInstance",
+    "typeId": "line"
+  }
+]

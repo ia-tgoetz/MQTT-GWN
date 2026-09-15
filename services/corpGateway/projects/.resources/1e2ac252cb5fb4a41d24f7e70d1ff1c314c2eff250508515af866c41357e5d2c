@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "/": {
+      "viewPath": "View"
+    }
+  },
+  "sharedDocks": {
+    "cornerPriority": "top-bottom"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "custom": {
+          "outputJson": {
+            "filename": "4180_ROUGH_STROKE.DFX",
+            "records": [],
+            "total_records": 0
+          }
+        },
+        "events": {
+          "component": {
+            "onFileReceived": {
+              "config": {
+                "script": "\timport re\n\timport _strptime  # Prevents Jython 2.7 thread-safety errors during strptime\n\tfrom datetime import datetime\n\t\n\t# Timestamps in this DFX export are a fixed-width, unseparated block:\n\t#   DD.MM.YYYY/HH:MM:SS  (always 19 characters, e.g. \"09.05.2022/00:43:51\")\n\t# There is NO delimiter anywhere in the file (no spaces, tabs, or commas)\n\t# between value / flag / timestamp fields, so a simple .split() on the raw\n\t# line (as in the original script) will never produce tokens - every line\n\t# gets skipped. Instead we locate the 6 fixed-width timestamps and use them\n\t# as anchors to slice out the value (and flag, where present) in front of\n\t# each one.\n\tTIMESTAMP_RE \u003d re.compile(r\u0027\\d{2}\\.\\d{2}\\.\\d{4}/\\d{2}:\\d{2}:\\d{2}\u0027)\n\t\n\t# Channels 1-5 always end with a single quality/status flag digit directly\n\t# before the timestamp, e.g. \"12.4248083\" + \"0\" + \"09.05.2022/00:43:51\".\n\t# Channel 6 (index 5) never has a flag digit - it\u0027s a fixed constant\n\t# (0.0255 in every record seen, looks like a K-factor/calibration value).\n\t# Rather than pattern-matching the decimal digit count (fragile if precision\n\t# varies row to row), we just know which channels carry a trailing flag\n\t# digit and slice it off directly.\n\tCHANNELS_WITH_FLAG \u003d set([0, 1, 2, 3, 4])\n\t\n\t# Generic placeholder names - rename these once you know what each column\n\t# actually represents (e.g. flow rate, static pressure, temperature, etc.)\n\tCHANNEL_NAMES \u003d [\"channel_1\", \"channel_2\", \"channel_3\", \"channel_4\", \"channel_5\", \"k_factor\"]\n\t\n\t\n\tdef parse_dfx_ignition(file_obj):\n\t\tlogger \u003d system.util.getLogger(\"DFX_Parser\")\n\t\n\t\t# Convert Java String to Python unicode so splitlines() works reliably\n\t\tfile_content \u003d unicode(file_obj.getString(\"UTF-8\"))\n\t\n\t\tif not file_content:\n\t\t\tlogger.warn(\"File content is empty.\")\n\t\t\treturn {\"filename\": file_obj.name, \"total_records\": 0, \"records\": []}\n\t\n\t\tlines \u003d file_content.strip().splitlines()\n\t\trecords \u003d []\n\t\n\t\tfor line_num, raw_line in enumerate(lines, 1):\n\t\t\tline \u003d raw_line.strip()\n\t\t\tif not line:\n\t\t\t\tcontinue\n\t\n\t\t\t# Anchor on the 6 embedded timestamps\n\t\t\tmatches \u003d list(TIMESTAMP_RE.finditer(line))\n\t\t\tif len(matches) !\u003d 6:\n\t\t\t\tlogger.warn(\"Line %d: expected 6 timestamps, found %d - skipping\" % (line_num, len(matches)))\n\t\t\t\tcontinue\n\t\n\t\t\treadings \u003d []\n\t\t\tparse_error \u003d False\n\t\t\tpos \u003d 0\n\t\n\t\t\tfor idx, m in enumerate(matches):\n\t\t\t\tchunk \u003d line[pos:m.start()]\n\t\t\t\ttimestamp_str \u003d m.group(0)\n\t\t\t\tpos \u003d m.end()\n\t\n\t\t\t\ttry:\n\t\t\t\t\tdt \u003d datetime.strptime(timestamp_str, \"%d.%m.%Y/%H:%M:%S\")\n\t\t\t\texcept Exception as e:\n\t\t\t\t\tlogger.warn(\"Line %d, channel %d: bad timestamp \u0027%s\u0027 - %s\" % (line_num, idx + 1, timestamp_str, str(e)))\n\t\t\t\t\tparse_error \u003d True\n\t\t\t\t\tbreak\n\t\n\t\t\t\thas_flag \u003d idx in CHANNELS_WITH_FLAG\n\t\t\t\tvalue_str \u003d chunk[:-1] if has_flag else chunk\n\t\t\t\tflag_str \u003d chunk[-1] if has_flag else None\n\t\n\t\t\t\ttry:\n\t\t\t\t\tif not value_str:\n\t\t\t\t\t\traise ValueError(\"empty value string\")\n\t\t\t\t\tvalue \u003d float(value_str)\n\t\t\t\t\tflag \u003d int(flag_str) if flag_str is not None else None\n\t\t\t\texcept (ValueError, TypeError) as e:\n\t\t\t\t\tlogger.warn(\"Line %d, channel %d: unrecognized value chunk \u0027%s\u0027 - %s\" % (line_num, idx + 1, chunk, str(e)))\n\t\t\t\t\tparse_error \u003d True\n\t\t\t\t\tbreak\n\t\n\t\t\t\treadings.append({\n\t\t\t\t\t\"channel\": CHANNEL_NAMES[idx] if idx \u003c len(CHANNEL_NAMES) else (\"channel_%d\" % (idx + 1)),\n\t\t\t\t\t\"value\": value,\n\t\t\t\t\t\"status_flag\": flag,\n\t\t\t\t\t\"timestamp\": dt.strftime(\"%Y-%m-%d %H:%M:%S\")\n\t\t\t\t})\n\t\n\t\t\tif not parse_error and len(readings) \u003d\u003d 6:\n\t\t\t\trecords.append({\n\t\t\t\t\t\"line\": line_num,\n\t\t\t\t\t\"readings\": readings\n\t\t\t\t})\n\t\n\t\treturn {\n\t\t\t\"filename\": file_obj.name,\n\t\t\t\"total_records\": len(records),\n\t\t\t\"records\": records\n\t\t}\n\t\n\t\n\t# Call inside Perspective onFileReceived event handler\n\tself.custom.outputJson \u003d parse_dfx_ignition(event.file)"
+              },
+              "scope": "G",
+              "type": "script"
+            },
+            "onUploadsCleared": {
+              "config": {
+                "script": "\tself.custom.outputJson\u003d{}"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "FileUpload"
+        },
+        "position": {
+          "basis": "286px"
+        },
+        "type": "ia.input.fileupload"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

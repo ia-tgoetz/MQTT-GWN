@@ -1,0 +1,141 @@
+[
+  {
+    "name": "bdSeq",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "Int8",
+      "documentation": "The last bdSeq number sent by the Edge Node in an NBIRTH message"
+    }
+  },
+  {
+    "name": "Birth Count",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "Int8",
+      "documentation": "The number of NBIRTH messages since the last time the info metrics were reset via the Node Info/Reset Info tag"
+    }
+  },
+  {
+    "name": "Current Server",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "String",
+      "documentation": "The current MQTT Server the Edge Node is connected to"
+    }
+  },
+  {
+    "name": "Data Latency",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "Int8",
+      "documentation": "The time in milliseconds between MQTT Engine receiving of the last message and the payload\u0027s reported time. Note: For this to be very accurate the edge node\u0027s clock and the system clock running MQTT Engine should be synced",
+      "engUnit": "ms"
+    }
+  },
+  {
+    "name": "Death Count",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "Int8",
+      "documentation": "The number of NDEATH messages since the last time the info metrics were reset via the Node Info/Reset Info tag"
+    }
+  },
+  {
+    "name": "Message Schema",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "String",
+      "documentation": "The schema associated with the Edge Node (e.g. Sparkplug B)"
+    }
+  },
+  {
+    "name": "Offline DateTime",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "DateTime",
+      "documentation": "The time at which the last NDEATH message was received by MQTT Engine"
+    }
+  },
+  {
+    "name": "Online",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "Boolean",
+      "documentation": "Whether or not the Edge Node is online. This is determined by whether the last lifecycle message was an NBIRTH or NDEATH"
+    }
+  },
+  {
+    "name": "Online DateTime",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "DateTime",
+      "documentation": "The time at which the last NBIRTH message was received by MQTT Engine"
+    }
+  },
+  {
+    "name": "Rebirth (Last) Cause",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "String",
+      "documentation": "The reason for the last rebirth request to be issued for this Edge Node by MQTT Engine"
+    }
+  },
+  {
+    "name": "Rebirth (Last) DateTime",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "DateTime",
+      "documentation": "The time at which the last rebirth was issued for this Edge Node by MQTT Engine"
+    }
+  },
+  {
+    "name": "Rebirth Count",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "Int8",
+      "documentation": "The count of rebirth requests issued for this Edge Node by MQTT Engine"
+    }
+  },
+  {
+    "name": "Reset Info",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "Boolean",
+      "documentation": "Writable tag to \u0027reset\u0027 the Node Info metrics"
+    }
+  },
+  {
+    "name": "seq",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "Int8",
+      "documentation": "The last Sparkplug seq number received from the Edge Node"
+    }
+  },
+  {
+    "name": "Total Bytes Recvd",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "Int8",
+      "documentation": "The number of bytes received from the Edge Node since the last time the info metrics were reset via the Node Info/Reset Info tag",
+      "engUnit": "bytes"
+    }
+  },
+  {
+    "name": "Total Bytes Xmit",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "Int8",
+      "documentation": "The number of bytes sent to the Edge Node since the last time the info metrics were reset via the Node Info/Reset Info tag",
+      "engUnit": "bytes"
+    }
+  },
+  {
+    "name": "Transmission Version",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "String",
+      "documentation": "The version of MQTT Transmission installed at the Edge Node"
+    }
+  }
+]

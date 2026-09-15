@@ -1,0 +1,33 @@
+[
+  {
+    "name": "line",
+    "parameters": {
+      "deviceName": {
+        "dataType": "String",
+        "value": "Site3Line 2"
+      },
+      "lineNum": {
+        "dataType": "Integer",
+        "value": 1
+      }
+    },
+    "tagType": "UdtType",
+    "tags": [
+      {
+        "dataType": "Int4",
+        "name": "hoa",
+        "tagType": "AtomicTag"
+      },
+      {
+        "dataType": "Boolean",
+        "name": "running",
+        "tagType": "AtomicTag"
+      },
+      {
+        "dataType": "Float4",
+        "name": "speed",
+        "tagType": "AtomicTag"
+      }
+    ]
+  }
+]

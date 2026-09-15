@@ -1,0 +1,22 @@
+{
+  "cleanSession": true,
+  "enableLegacyStateMessages": false,
+  "enablePrimaryHostSubscriptions": false,
+  "hostnameVerification": true,
+  "includeSparkplugDataTypes": true,
+  "keepAlive": 30,
+  "legacyStateHostnameVerification": true,
+  "password": {
+    "data": {
+      "ciphertext": "7EZBYzkyzOmO7A",
+      "encrypted_key": "J-YMdae6DB-aXG3CDd6caccp1sIyR-ijNxMT2q7CQoB800owWyz-MA",
+      "iv": "wXeqL83jTgScTUNd",
+      "protected": "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIiwiaWF0IjoxNzg5NDgyODA0LCJ6aXAiOiJERUYifQ",
+      "tag": "33zy2v7GNzvcC66XkOiRNw"
+    },
+    "type": "Embedded"
+  },
+  "serverSet": "corpBroker",
+  "url": "tcp://chariot:1883",
+  "username": "admin"
+}

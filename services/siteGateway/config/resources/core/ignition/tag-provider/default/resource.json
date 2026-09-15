@@ -1,0 +1,19 @@
+{
+  "scope": "A",
+  "description": "Default tag provider",
+  "version": 1,
+  "restricted": false,
+  "overridable": true,
+  "files": [
+    "config.json"
+  ],
+  "attributes": {
+    "lastModification": {
+      "actor": "8.3-migration",
+      "timestamp": "2026-09-15T12:29:09Z"
+    },
+    "uuid": "dfd5f432-f0ed-444d-9430-adb32d375955",
+    "lastModificationSignature": "f19c5a80dd18f0ea63ef569e4f1982192ff5ccf20b3d90fa022a94821c7cb4a3",
+    "enabled": true
+  }
+}
