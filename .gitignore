@@ -6,3 +6,7 @@ chariot-data/*
 !.env.example
 !**/.env.example
 services/chariot/
+# Project conversion artifacts
+**/projects/conversion-report.txt
+**/migration-log-*.md
+**/.resources/
