@@ -1,7 +1,0 @@
-{
-  "title": "Core",
-  "description": "Core collection of locally managed Gateway configuration resources",
-  "enabled": true,
-  "inheritable": true,
-  "parent": "external"
-}

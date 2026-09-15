@@ -1,8 +1,0 @@
-{
-  "defaultTagsEnabled": true,
-  "namespaceType": "SparkplugB",
-  "rootFolder": "",
-  "subscription": "spBv1.0/#",
-  "unsFolderPrefix": "UNS",
-  "unsTagsEnabled": false
-}

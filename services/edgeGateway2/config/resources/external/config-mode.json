@@ -1,7 +1,0 @@
-{
-  "title": "External",
-  "description": "Externally managed configuration",
-  "enabled": true,
-  "inheritable": true,
-  "parent": "system"
-}
