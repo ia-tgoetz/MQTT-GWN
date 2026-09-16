@@ -35,6 +35,28 @@
           "path": "TransmissionControl/controlCard"
         },
         "type": "ia.display.flex-repeater"
+      },
+      {
+        "meta": {
+          "name": "TextArea"
+        },
+        "position": {
+          "basis": "160px"
+        },
+        "scripts": {
+          "customMethods": [],
+          "extensionFunctions": null,
+          "messageHandlers": [
+            {
+              "messageType": "response",
+              "pageScope": true,
+              "script": "\tself.props.text\u003dpayload[\u0027response\u0027]",
+              "sessionScope": false,
+              "viewScope": false
+            }
+          ]
+        },
+        "type": "ia.input.text-area"
       }
     ],
     "meta": {

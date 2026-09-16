@@ -45,7 +45,11 @@ def apiPut(endpoint, payload, gatewayName, baseURL='http://{}:8088'):
 		msg= "Error executing HTTP POST:", e
 	return msg
 
-
+def trialState(gatewayName, baseURL='http://{}:8088'):
+	endpoint='{baseUrl}/data/api/v1/trial'
+	response= API.apiGet(endpoint, gatewayName, baseURL)
+	return response
+	
 def MQTTtransmissionState(gatewayName, baseURL='http://{}:8088'):
 	endpoint='{baseUrl}/data/api/v1/resources/singleton/com.cirruslink.mqtt.transmission.gateway/general'
 	response= API.apiGet(endpoint, gatewayName, baseURL)
