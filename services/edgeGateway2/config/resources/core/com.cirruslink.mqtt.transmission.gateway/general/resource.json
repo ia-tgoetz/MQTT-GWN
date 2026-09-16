@@ -8,10 +8,10 @@
   ],
   "attributes": {
     "lastModification": {
-      "actor": "admin",
-      "timestamp": "2026-09-15T16:38:53Z"
+      "actor": "api-token:edgeGateway2:172.18.0.12",
+      "timestamp": "2026-09-16T00:44:41Z"
     },
-    "lastModificationSignature": "e277bababfd85fdde409d64ff807353a1b02319eea4389a15e3bce0ab3a31b6a",
+    "lastModificationSignature": "458e4eb7a9a375b414265ebb09fe7edd0d441ee53544a660c507e092eb3e7a13",
     "enabled": false
   }
 }

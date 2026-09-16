@@ -55,6 +55,24 @@
     }
   },
   {
+    "name": "Refresh Required",
+    "tagType": "AtomicTag",
+    "usr": {
+      "dataType": "Boolean",
+      "documentation": "A tag indicating the new tags have been identified by the module for this Edge Node and a refresh is required.",
+      "enabled": true,
+      "readOnly": true,
+      "readPermissions": {
+        "securityLevels": [],
+        "type": "AllOf"
+      },
+      "writePermissions": {
+        "securityLevels": [],
+        "type": "AllOf"
+      }
+    }
+  },
+  {
     "name": "Reset Metrics",
     "tagType": "AtomicTag",
     "usr": {

@@ -3,10 +3,20 @@
   "dataFormatTypeWrapper": "Sparkplug_B_v1_0_Protobuf",
   "hostnameVerification": true,
   "keepAlive": 30,
+  "password": {
+    "data": {
+      "ciphertext": "yjiMtXFfCk7rSg",
+      "encrypted_key": "snhNfskkPDBWjpxc1HmzMjQRNHJdog20mPnfCDSvbD2jQBsXb09Fxw",
+      "iv": "WAL8aEWDRrB1iX7P",
+      "protected": "eyJhbGciOiJBMjU2S1ciLCJlbmMiOiJBMjU2R0NNIiwiaWF0IjoxNzg5NTE5NDQ3LCJ6aXAiOiJERUYifQ",
+      "tag": "VopZboy7ZYHE1At-MvOeFg"
+    },
+    "type": "Embedded"
+  },
   "reconnectDelay": 1000,
   "rpcHostnameVerification": true,
   "serverSet": "siteBroker",
   "subscribeToLegacyStateTopic": true,
-  "url": "tcp://sitegateway:1883",
+  "url": "tcp://localhost:1883",
   "username": "admin"
 }

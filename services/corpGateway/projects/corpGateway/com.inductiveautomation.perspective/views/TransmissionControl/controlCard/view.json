@@ -1,0 +1,266 @@
+{
+  "custom": {
+    "togglePayload": {
+      "config": {
+        "redundancyTransitionActiveDelay": 3000
+      },
+      "description": null,
+      "enabled": true
+    },
+    "transmissionState": {
+      "attributes": {
+        "enabled": true,
+        "lastModification": {
+          "actor": "api-token:edgeGateway1:172.18.0.12",
+          "timestamp": "2026-09-15T20:37:23Z"
+        },
+        "lastModificationSignature": "7af44e197bd73e3f8a9123ab0ce807ccd4be25885171b31176516dd68afbdfe3"
+      },
+      "collection": "core",
+      "collections": [
+        "core"
+      ],
+      "config": {
+        "enableTransmission": false,
+        "redundancyTransitionActiveDelay": 3000
+      },
+      "data": [
+        "config.json"
+      ],
+      "description": null,
+      "enabled": true,
+      "healthchecks": {},
+      "metrics": {},
+      "signature": "3c51fa737f69d6dfd80e9875c6722aa2cf033ae2d67dc01c8eb359b8d6510532",
+      "type": "com.cirruslink.mqtt.transmission.gateway/general",
+      "version": 1
+    }
+  },
+  "params": {
+    "gatewayName": "edgeGateway1"
+  },
+  "propConfig": {
+    "custom.togglePayload": {
+      "persistent": true
+    },
+    "custom.togglePayload.collection": {
+      "binding": {
+        "config": {
+          "path": "view.custom.transmissionState.collection"
+        },
+        "type": "property"
+      }
+    },
+    "custom.togglePayload.config.enableTransmission": {
+      "binding": {
+        "config": {
+          "expression": "!{view.custom.transmissionState.enabled}"
+        },
+        "type": "expr"
+      }
+    },
+    "custom.togglePayload.signature": {
+      "binding": {
+        "config": {
+          "path": "view.custom.transmissionState.signature"
+        },
+        "type": "property"
+      }
+    },
+    "custom.transmissionState": {
+      "binding": {
+        "config": {
+          "expression": "now(2000)"
+        },
+        "transforms": [
+          {
+            "code": "\tgateWayName\u003dself.params.gatewayName\n\treturn API.MQTTtransmissionState(gateWayName, baseURL\u003d\u0027http://{}:8088\u0027).json",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      },
+      "persistent": true
+    },
+    "params.gatewayName": {
+      "paramDirection": "input",
+      "persistent": true
+    }
+  },
+  "props": {
+    "defaultSize": {
+      "height": 35,
+      "width": 506
+    }
+  },
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "Label"
+        },
+        "position": {
+          "basis": "143px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.params.gatewayName"
+              },
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "padding": "4px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "meta": {
+          "name": "Icon"
+        },
+        "position": {
+          "basis": "30px"
+        },
+        "propConfig": {
+          "props.color": {
+            "binding": {
+              "config": {
+                "path": "view.custom.transmissionState.config.enableTransmission"
+              },
+              "transforms": [
+                {
+                  "fallback": null,
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "--success"
+                    },
+                    {
+                      "input": false,
+                      "output": "--error"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          },
+          "props.path": {
+            "binding": {
+              "config": {
+                "path": "view.custom.transmissionState.config.enableTransmission"
+              },
+              "transforms": [
+                {
+                  "fallback": null,
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "material/radio_button_checked"
+                    },
+                    {
+                      "input": false,
+                      "output": "material/radio_button_unchecked"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "padding": "4px"
+          }
+        },
+        "type": "ia.display.icon"
+      },
+      {
+        "meta": {
+          "name": "Label_0"
+        },
+        "position": {
+          "basis": "143px",
+          "grow": 1
+        },
+        "propConfig": {
+          "props.text": {
+            "binding": {
+              "config": {
+                "path": "view.custom.transmissionState.config.enableTransmission"
+              },
+              "transforms": [
+                {
+                  "fallback": null,
+                  "inputType": "scalar",
+                  "mappings": [
+                    {
+                      "input": true,
+                      "output": "Enabled"
+                    },
+                    {
+                      "input": false,
+                      "output": "Disabled"
+                    }
+                  ],
+                  "outputType": "scalar",
+                  "type": "map"
+                }
+              ],
+              "type": "property"
+            }
+          }
+        },
+        "props": {
+          "style": {
+            "padding": "4px"
+          }
+        },
+        "type": "ia.display.label"
+      },
+      {
+        "events": {
+          "component": {
+            "onActionPerformed": {
+              "config": {
+                "script": "\tgatewayName\u003dstr(self.view.params.gatewayName)\n\tbaseURL\u003d\u0027http://{}:8088\u0027\n\tresponse\u003dAPI.MQTTtransmissionState(gatewayName, baseURL).json\n\tconfig\u003dresponse.get(\"config\")\n\tenableTransmission\u003dconfig.get(\"enableTransmission\")\n\tredundancyTransitionActiveDelay\u003dconfig.get(\"redundancyTransitionActiveDelay\")\n\tpayload\u003d{\n\t  \"collection\": response.get(\"collection\"),\n\t  \"enabled\": response.get(\"enabled\"),\n\t  \"description\": response.get(\"description\"),\n\t  \"signature\": response.get(\"signature\"),\n\t  \"config\": {\n\t    \"enableTransmission\": not enableTransmission,\n\t    \"redundancyTransitionActiveDelay\": redundancyTransitionActiveDelay\n\t  }\n\t}\n\t\n\tresponse\u003dAPI.MQTTtransmissionToggle([payload], gatewayName, baseURL)\n\tsystem.perspective.print(response)"
+              },
+              "scope": "G",
+              "type": "script"
+            }
+          }
+        },
+        "meta": {
+          "name": "Button"
+        },
+        "position": {
+          "basis": "80px"
+        },
+        "props": {
+          "style": {
+            "padding": "4px"
+          },
+          "text": "Toggle"
+        },
+        "type": "ia.input.button"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "type": "ia.container.flex"
+  }
+}

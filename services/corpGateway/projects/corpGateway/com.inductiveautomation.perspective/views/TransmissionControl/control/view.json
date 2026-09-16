@@ -1,0 +1,48 @@
+{
+  "custom": {},
+  "params": {},
+  "props": {},
+  "root": {
+    "children": [
+      {
+        "meta": {
+          "name": "FlexRepeater"
+        },
+        "position": {
+          "basis": "191px"
+        },
+        "props": {
+          "direction": "column",
+          "elementPosition": {
+            "basis": "auto",
+            "grow": 0,
+            "shrink": 0
+          },
+          "instances": [
+            {
+              "gatewayName": "siteGateway"
+            },
+            {
+              "gatewayName": "siteEdgeGateway1"
+            },
+            {
+              "gatewayName": "edgeGateway1"
+            },
+            {
+              "gatewayName": "edgeGateway2"
+            }
+          ],
+          "path": "TransmissionControl/controlCard"
+        },
+        "type": "ia.display.flex-repeater"
+      }
+    ],
+    "meta": {
+      "name": "root"
+    },
+    "props": {
+      "direction": "column"
+    },
+    "type": "ia.container.flex"
+  }
+}

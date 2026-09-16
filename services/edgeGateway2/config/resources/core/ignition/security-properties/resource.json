@@ -8,9 +8,10 @@
   ],
   "attributes": {
     "lastModification": {
-      "actor": "system-init",
-      "timestamp": "2026-09-15T14:15:24Z"
+      "actor": "admin",
+      "timestamp": "2026-09-15T17:19:53Z"
     },
-    "lastModificationSignature": "a595ea6ce692183decbecdb7289b31538667f3fe436ec19b2f6dd880f9e4d5ce"
+    "lastModificationSignature": "4bb379110d9d3e2a1e03e0a64fdfbdacf96a00614ee27da9b90ec37e9f3fe0f0",
+    "enabled": true
   }
 }

@@ -24,7 +24,7 @@
         "dataType": "Float4",
         "name": "speed",
         "tagType": "AtomicTag",
-        "value": 34.62159
+        "value": 107.70925
       }
     ]
   },
@@ -53,7 +53,7 @@
         "dataType": "Float4",
         "name": "speed",
         "tagType": "AtomicTag",
-        "value": 1.35474
+        "value": 1.60392
       }
     ]
   }

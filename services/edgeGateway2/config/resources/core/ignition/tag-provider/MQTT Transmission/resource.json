@@ -2,17 +2,11 @@
   "scope": "A",
   "version": 1,
   "restricted": false,
-  "overridable": true,
+  "overridable": false,
   "files": [
     "config.json"
   ],
   "attributes": {
-    "lastModification": {
-      "actor": "external",
-      "timestamp": "2026-09-15T14:14:43Z"
-    },
-    "uuid": "5661d8f5-e239-440e-b91c-16bdec379df5",
-    "lastModificationSignature": "852ac0077908513f8aaf5cdd8a4ad726250c98af8e785b29307b3be79e4e98a4",
-    "enabled": true
+    "uuid": "06478afa-76b8-46c7-bba7-a3d6189f986e"
   }
 }
