@@ -3,6 +3,10 @@
     "/": {
       "title": "",
       "viewPath": "Main"
+    },
+    "/control": {
+      "title": "",
+      "viewPath": "TransmissionControl/control"
     }
   },
   "sharedDocks": {

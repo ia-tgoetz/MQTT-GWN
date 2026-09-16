@@ -8,10 +8,10 @@
   ],
   "attributes": {
     "lastModification": {
-      "actor": "admin",
-      "timestamp": "2026-09-15T17:13:55Z"
+      "actor": "api-token:siteGateway:172.18.0.12",
+      "timestamp": "2026-09-16T00:44:39Z"
     },
-    "lastModificationSignature": "98fc5459afb8058db567eca8502d77c2563701164fa4d8919392aa08446e29ea",
+    "lastModificationSignature": "dedcb6dbf8fbceda93687c85d954da2cee2a2ce13c75d3000108f7327736286d",
     "enabled": false
   }
 }

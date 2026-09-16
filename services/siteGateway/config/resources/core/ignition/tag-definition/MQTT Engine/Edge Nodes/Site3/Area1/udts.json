@@ -1,8 +1,8 @@
 [
   {
-    "name": "Line 1",
+    "name": "Line1",
     "parameters": {
-      "deviceName": "Site2Line 1",
+      "deviceName": "Site3Line 1",
       "lineNum": 1
     },
     "tagType": "UdtInstance",
@@ -18,20 +18,20 @@
         "dataType": "Boolean",
         "name": "running",
         "tagType": "AtomicTag",
-        "value": true
+        "value": false
       },
       {
         "dataType": "Float4",
         "name": "speed",
         "tagType": "AtomicTag",
-        "value": 107.70925
+        "value": 62.62607
       }
     ]
   },
   {
-    "name": "Line 2",
+    "name": "Line2",
     "parameters": {
-      "deviceName": "Site2Line 1",
+      "deviceName": "Site3Line 1",
       "lineNum": 2
     },
     "tagType": "UdtInstance",
@@ -47,13 +47,13 @@
         "dataType": "Boolean",
         "name": "running",
         "tagType": "AtomicTag",
-        "value": true
+        "value": false
       },
       {
         "dataType": "Float4",
         "name": "speed",
         "tagType": "AtomicTag",
-        "value": 1.60392
+        "value": 1.44644
       }
     ]
   }
