@@ -12,9 +12,9 @@
         "enabled": true,
         "lastModification": {
           "actor": "api-token:edgeGateway1:172.18.0.12",
-          "timestamp": "2026-09-15T20:37:23Z"
+          "timestamp": "2026-09-16T00:44:40Z"
         },
-        "lastModificationSignature": "7af44e197bd73e3f8a9123ab0ce807ccd4be25885171b31176516dd68afbdfe3"
+        "lastModificationSignature": "1caa7aea29c0291a379b435f3bd8ef002e6b26cf2912bfed82b3578fac0cdef8"
       },
       "collection": "core",
       "collections": [
@@ -31,9 +31,19 @@
       "enabled": true,
       "healthchecks": {},
       "metrics": {},
-      "signature": "3c51fa737f69d6dfd80e9875c6722aa2cf033ae2d67dc01c8eb359b8d6510532",
+      "signature": "c0f4443274d240572ea36904be0f6dda3932927670c8d6266a17759c60be54f0",
       "type": "com.cirruslink.mqtt.transmission.gateway/general",
       "version": 1
+    },
+    "trialState": {
+      "development": false,
+      "developmentSecondsLeft": 0,
+      "emergency": false,
+      "emergencySecondsLeft": 0,
+      "expired": false,
+      "licenseMode": "Trial",
+      "trialSecondsLeft": 6975,
+      "trialState": "AllInDemo"
     }
   },
   "params": {
@@ -82,6 +92,21 @@
       },
       "persistent": true
     },
+    "custom.trialState": {
+      "binding": {
+        "config": {
+          "expression": "now(2000)"
+        },
+        "transforms": [
+          {
+            "code": "\tgateWayName\u003dself.params.gatewayName\n\treturn API.trialState(gateWayName, baseURL\u003d\u0027http://{}:8088\u0027).json",
+            "type": "script"
+          }
+        ],
+        "type": "expr"
+      },
+      "persistent": true
+    },
     "params.gatewayName": {
       "paramDirection": "input",
       "persistent": true
@@ -89,19 +114,19 @@
   },
   "props": {
     "defaultSize": {
-      "height": 35,
-      "width": 506
+      "height": 49,
+      "width": 617
     }
   },
   "root": {
     "children": [
       {
         "meta": {
-          "name": "Label"
+          "name": "gatewayName"
         },
         "position": {
-          "basis": "143px",
-          "grow": 1
+          "basis": "160px",
+          "shrink": 0
         },
         "propConfig": {
           "props.text": {
@@ -115,14 +140,20 @@
         },
         "props": {
           "style": {
-            "padding": "4px"
+            "margin": "4px",
+            "paddingLeft": "16px",
+            "paddingRight": "16px"
+          },
+          "textStyle": {
+            "fontWeight": "bolder",
+            "textAlign": "center"
           }
         },
         "type": "ia.display.label"
       },
       {
         "meta": {
-          "name": "Icon"
+          "name": "TransmissionState"
         },
         "position": {
           "basis": "30px"
@@ -190,11 +221,10 @@
       },
       {
         "meta": {
-          "name": "Label_0"
+          "name": "TransmissionStateLabel"
         },
         "position": {
-          "basis": "143px",
-          "grow": 1
+          "shrink": 0
         },
         "propConfig": {
           "props.text": {
@@ -226,7 +256,9 @@
         },
         "props": {
           "style": {
-            "padding": "4px"
+            "margin": "4px",
+            "paddingLeft": "16px",
+            "paddingRight": "16px"
           }
         },
         "type": "ia.display.label"
@@ -236,7 +268,7 @@
           "component": {
             "onActionPerformed": {
               "config": {
-                "script": "\tgatewayName\u003dstr(self.view.params.gatewayName)\n\tbaseURL\u003d\u0027http://{}:8088\u0027\n\tresponse\u003dAPI.MQTTtransmissionState(gatewayName, baseURL).json\n\tconfig\u003dresponse.get(\"config\")\n\tenableTransmission\u003dconfig.get(\"enableTransmission\")\n\tredundancyTransitionActiveDelay\u003dconfig.get(\"redundancyTransitionActiveDelay\")\n\tpayload\u003d{\n\t  \"collection\": response.get(\"collection\"),\n\t  \"enabled\": response.get(\"enabled\"),\n\t  \"description\": response.get(\"description\"),\n\t  \"signature\": response.get(\"signature\"),\n\t  \"config\": {\n\t    \"enableTransmission\": not enableTransmission,\n\t    \"redundancyTransitionActiveDelay\": redundancyTransitionActiveDelay\n\t  }\n\t}\n\t\n\tresponse\u003dAPI.MQTTtransmissionToggle([payload], gatewayName, baseURL)\n\tsystem.perspective.print(response)"
+                "script": "\tgatewayName\u003dstr(self.view.params.gatewayName)\n\tbaseURL\u003d\u0027http://{}:8088\u0027\n\tresponse\u003dAPI.MQTTtransmissionState(gatewayName, baseURL).json\n\tconfig\u003dresponse.get(\"config\")\n\tenableTransmission\u003dconfig.get(\"enableTransmission\")\n\tredundancyTransitionActiveDelay\u003dconfig.get(\"redundancyTransitionActiveDelay\")\n\tpayload\u003d{\n\t  \"collection\": response.get(\"collection\"),\n\t  \"enabled\": response.get(\"enabled\"),\n\t  \"description\": response.get(\"description\"),\n\t  \"signature\": response.get(\"signature\"),\n\t  \"config\": {\n\t    \"enableTransmission\": not enableTransmission,\n\t    \"redundancyTransitionActiveDelay\": redundancyTransitionActiveDelay\n\t  }\n\t}\n\t\n\tresponse\u003dAPI.MQTTtransmissionToggle([payload], gatewayName, baseURL)\n\tsystem.perspective.sendMessage(\"response\", {\"response\": response})\n\tsystem.perspective.print(response)"
               },
               "scope": "G",
               "type": "script"
@@ -244,18 +276,72 @@
           }
         },
         "meta": {
-          "name": "Button"
+          "name": "ToggleTransmissionState"
         },
         "position": {
           "basis": "80px"
         },
         "props": {
           "style": {
-            "padding": "4px"
+            "margin": "4px"
           },
           "text": "Toggle"
         },
         "type": "ia.input.button"
+      },
+      {
+        "meta": {
+          "name": "RadioGroup"
+        },
+        "position": {
+          "grow": 1
+        },
+        "propConfig": {
+          "props.radios[0].selected": {
+            "binding": {
+              "config": {
+                "expression": "!{view.custom.trialState.expired}"
+              },
+              "type": "expr"
+            }
+          },
+          "props.radios[0].text": {
+            "binding": {
+              "config": {
+                "expression": "\"Trial Timer (ms): \"+{view.custom.trialState.trialSecondsLeft}"
+              },
+              "type": "expr"
+            }
+          }
+        },
+        "props": {
+          "justify": "end",
+          "radios": [
+            {
+              "enabled": true,
+              "style": {
+                "classes": ""
+              },
+              "value": "Expired"
+            }
+          ],
+          "selectedIcon": {
+            "color": {
+              "enabled": "--success"
+            }
+          },
+          "style": {
+            "paddingBottom": 0,
+            "paddingTop": 0
+          },
+          "unselectedIcon": {
+            "color": {
+              "enabled": "--error"
+            }
+          },
+          "value": "Expired"
+        },
+        "type": "ia.input.radio-group"
       }
     ],
     "meta": {
